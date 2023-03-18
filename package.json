@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxtjs/supabase": "^0.3.1",
+    "nuxt": "^3.3.1"
+  },
+  "dependencies": {
+    "@tanstack/vue-query": "^4.27.0"
+  }
+}
