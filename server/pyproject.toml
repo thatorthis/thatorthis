@@ -11,16 +11,16 @@ fastapi = "^0.94.1"
 uvicorn = {extras = ["standard"], version = "^0.21.1"}
 asyncpg = "^0.27.0"
 sqlalchemy = "^2.0.6"
+pytest-env = "^0.8.1"
 pyjwt = "^2.6.0"
+mypy = "^1.1.1"
 pydantic = "^1.10.6"
 
 
 [tool.poetry.group.dev.dependencies]
-ruff = "0.0.257"
-black = "23.1.0"
-mypy = "1.1.1"
+ruff = "^0.0.257"
+black = "^23.1.0"
 pytest = "^7.2.2"
-pytest-env = "^0.8.1"
 pytest-cov = "^4.0.0"
 pytest-alembic = "^0.10.0"
 

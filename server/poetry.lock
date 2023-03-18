@@ -96,7 +96,7 @@ test = ["flake8 (>=5.0.4,<5.1.0)", "uvloop (>=0.15.3)"]
 name = "attrs"
 version = "22.2.0"
 description = "Classes Without Boilerplate"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -428,7 +428,7 @@ files = [
 name = "iniconfig"
 version = "2.0.0"
 description = "brain-dead simple config-ini parsing"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -520,7 +520,7 @@ files = [
 name = "mypy"
 version = "1.1.1"
 description = "Optional static typing for Python"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -566,7 +566,7 @@ reports = ["lxml"]
 name = "mypy-extensions"
 version = "1.0.0"
 description = "Type system extensions for programs checked with the mypy type checker."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.5"
 files = [
@@ -578,7 +578,7 @@ files = [
 name = "packaging"
 version = "23.0"
 description = "Core utilities for Python packages"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -618,7 +618,7 @@ test = ["appdirs (==1.4.4)", "covdefaults (>=2.2.2)", "pytest (>=7.2.1)", "pytes
 name = "pluggy"
 version = "1.0.0"
 description = "plugin and hook calling mechanisms for python"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -705,7 +705,7 @@ tests = ["coverage[toml] (==5.0.4)", "pytest (>=6.0.0,<7.0.0)"]
 name = "pytest"
 version = "7.2.2"
 description = "pytest: simple powerful testing with Python"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -763,7 +763,7 @@ testing = ["fields", "hunter", "process-tests", "pytest-xdist", "six", "virtuale
 name = "pytest-env"
 version = "0.8.1"
 description = "py.test plugin that allows you to add environment variables."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -1173,4 +1173,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "~3.11"
-content-hash = "31656ba36904af118ed343c60be4e0c5d07f0ba1d4f7b8b596d54c7bff8c1207"
+content-hash = "66c031adfa8e17f6a969c701ed0efa4e7acbad06eb20926fd34949e735c3f7ab"
