@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "thatorthis"
+version = "0.1.0"
+description = "thatorthis is a social media platform based on 'this or that' game"
+authors = ["sjquant <seonujang92@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "~3.11"
+fastapi = "^0.94.1"
+uvicorn = {extras = ["standard"], version = "^0.21.1"}
+asyncpg = "^0.27.0"
+sqlalchemy = "^2.0.6"
+pytest-env = "^0.8.1"
+pyjwt = "^2.6.0"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.0.257"
+black = "^23.1.0"
+pyright = "^1.1.299"
+pytest = "^7.2.2"
+pytest-cov = "^4.0.0"
+pytest-alembic = "^0.10.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+extend-ignore = ["I001"] 
+line-length = 100
+fix = true
+exclude = ["**/versions/**"]
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["E402"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+env=[]
