@@ -1,42 +1,41 @@
-# Nuxt 3 Minimal Starter
+# thatorthis (thatorthis)
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+thatorthis is a social media platform based on 'this or that' game
 
-## Setup
-
-Make sure to install the dependencies:
-
+## Install the dependencies
 ```bash
-# yarn
-yarn install
-
-# npm
+yarn
+# or
 npm install
-
-# pnpm
-pnpm install
 ```
 
-## Development Server
-
-Start the development server on http://localhost:3000
-
+### Start the app in development mode (hot-code reloading, error reporting, etc.)
 ```bash
-npm run dev
+quasar dev
 ```
 
-## Production
 
-Build the application for production:
-
+### Lint the files
 ```bash
-npm run build
+yarn lint
+# or
+npm run lint
 ```
 
-Locally preview production build:
 
+### Format the files
 ```bash
-npm run preview
+yarn format
+# or
+npm run format
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+
+### Build the app for production
+```bash
+quasar build
+```
+
+### Customize the configuration
+See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
