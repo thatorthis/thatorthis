@@ -1,15 +1,14 @@
 <template>
-  <div v-for="question in data" :key="question.id">
-    <p>{{ question.question }}</p>
-    <div v-for="option in question.options">
-      <input type="radio" :value="option.id" />
-      <label>{{ option.option }}</label>
-    </div>
-  </div>
+  <QuestionCard
+    :question="question"
+    v-for="question in data"
+    :key="question.id"
+  />
 </template>
 
 <script setup lang="ts">
 import { useService, symbols } from "~/composables/use-service";
+import QuestionCard from "~~/components/QuestionCard.vue";
 
-const { data } = useService(symbols.question);
+const { data } = useService(symbols.trendingQuestions);
 </script>

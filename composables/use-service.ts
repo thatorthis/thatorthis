@@ -1,7 +1,6 @@
 import { provide, inject } from "vue";
 import { InjectionKey } from "vue";
-import { useAuthService } from "./auth";
-import { useQuestionService } from "./question";
+import { useAuthService, useTrendingQuestions } from "./services";
 
 type ArgsType<T> = T extends (...args: infer A) => any ? A : never;
 type ReturnTypeOf<T> = T extends (...args: any[]) => infer R ? R : never;
@@ -9,14 +8,14 @@ type CallableTypeOf<T> = (...args: ArgsType<T>) => ReturnTypeOf<T>;
 
 export const symbols = Object.freeze({
   auth: Symbol("auth") as InjectionKey<ReturnTypeOf<typeof useAuthService>>,
-  question: Symbol("question") as InjectionKey<
-    ReturnTypeOf<typeof useQuestionService>
+  trendingQuestions: Symbol("trendingQuestions") as InjectionKey<
+    ReturnTypeOf<typeof useTrendingQuestions>
   >,
 });
 
 const serviceFuncMap: Record<symbol, (...args: any[]) => any> = {
   [symbols.auth as symbol]: useAuthService,
-  [symbols.question as symbol]: useQuestionService,
+  [symbols.trendingQuestions as symbol]: useTrendingQuestions,
 };
 
 export function useService<U>(

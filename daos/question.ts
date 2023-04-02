@@ -1,5 +1,9 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 
+export interface Option {
+  id: string;
+  option: string;
+}
 export interface QuestionWithOptions {
   id: string;
   question: string;

@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/vue-query";
 import { QuestionWithOptionsDAO } from "~/daos";
 
-export const useQuestionService = () => {
+export const useTrendingQuestions = () => {
   const client = useSupabaseClient();
   const dao = new QuestionWithOptionsDAO(client);
   const { data, suspense } = useQuery({
-    queryKey: ["questions"],
+    queryKey: ["trending-questions"],
     queryFn: () => dao.fetch(),
   });
 
