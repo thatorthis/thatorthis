@@ -13,14 +13,14 @@ export interface QuestionWithOptions {
   }[];
 }
 
-export class QuestionWithOptionsDAO {
+export class QuestionDAO {
   private _client: SupabaseClient;
 
   constructor(client: SupabaseClient) {
     this._client = client;
   }
 
-  async fetch({
+  async fetchQuestionsWithOptions({
     limit = 10,
   }: {
     limit?: number;

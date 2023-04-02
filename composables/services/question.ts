@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/vue-query";
-import { QuestionWithOptionsDAO } from "~/daos";
+import { symbols, QuestionDAO } from "~/daos";
 
 export const useTrendingQuestions = () => {
   const client = useSupabaseClient();
-  const dao = new QuestionWithOptionsDAO(client);
+  const dao = inject(symbols.question, new QuestionDAO(client));
   const { data, suspense } = useQuery({
     queryKey: ["trending-questions"],
-    queryFn: () => dao.fetch(),
+    queryFn: () => dao.fetchQuestionsWithOptions(),
   });
 
   onServerPrefetch(async () => {
