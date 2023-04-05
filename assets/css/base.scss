@@ -3,5 +3,15 @@ html {
 
     body {
         font-size: 1.6rem;
+        background-color: $background;
     }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 1.6rem 0;
+}
+
+button {
+    border: none;
+    background-color: transparent;
 }
