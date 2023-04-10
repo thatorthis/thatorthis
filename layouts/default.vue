@@ -10,7 +10,7 @@
 .default-layout {
   display: flex;
   justify-content: center;
-  min-height: 100vh;
+  height: 100vh;
   padding: 1.6rem 1.6rem;
 
   &__content {

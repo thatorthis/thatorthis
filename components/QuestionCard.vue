@@ -32,7 +32,7 @@ function selectOption(option: { id: string }) {
 .question-card {
   border-radius: 1.6rem;
   padding: 1.6rem;
-  margin-bottom: 1.6rem;
+  margin-bottom: 2.4rem;
   background-color: $white;
 }
 </style>
