@@ -55,11 +55,11 @@ async function signInWith(provider: "google"): Promise<void> {
   display: flex;
   align-items: center;
   cursor: pointer;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: rgba(0, 0, 0, 0.08) 0 4px 16px 0;
   transition: box-shadow 0.3s, transform 0.3s;
 
   &:hover {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 6px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: rgba(0, 0, 0, 0.12) 0 4px 16px 0;
     transform: translateY(-2px);
   }
 
