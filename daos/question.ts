@@ -7,10 +7,15 @@ export interface Option {
 export interface QuestionWithOptions {
   id: string;
   question: string;
-  options: {
-    id: string;
-    option: string;
-  }[];
+  options: Option[];
+}
+
+interface OptionIdAndVoteCount {
+  option_id: string;
+  options: { count: number };
+}
+export interface OptionIdToVoteCount {
+  [optionId: string]: number;
 }
 
 export class QuestionDAO {
@@ -20,27 +25,43 @@ export class QuestionDAO {
     this._client = client;
   }
 
-  async fetchQuestionsWithOptions({
+  async fetchTrendingQuestions({
     limit = 10,
   }: {
     limit?: number;
   } = {}): Promise<QuestionWithOptions[]> {
     const { data, error } = await this._client
-      .from("questions")
-      .select(
-        `
-        id,
-        question,
-        options (
-          id,
-          option
-        )`
-      )
+      .from("trending_questions")
+      .select("*")
       .limit(limit);
     if (error) {
       throw error;
     }
-    // @ts-ignore
-    return data;
+
+    return data as QuestionWithOptions[];
+  }
+
+  async fetchVoteCountForOption(
+    optionIds: string[]
+  ): Promise<OptionIdToVoteCount> {
+    const { data, error } = await this._client
+      .from("votes")
+      .select("option_id, options(count)")
+      .in("option_id", optionIds);
+
+    if (error) {
+      throw error;
+    }
+
+    return (data as OptionIdAndVoteCount[]).reduce(
+      (
+        acc: OptionIdToVoteCount,
+        { option_id, options }: OptionIdAndVoteCount
+      ) => {
+        acc[option_id] = options.count;
+        return acc;
+      },
+      {}
+    );
   }
 }

@@ -6,7 +6,8 @@ export const useTrendingQuestions = () => {
   const dao = inject(symbols.question, new QuestionDAO(client));
   const { data, suspense } = useQuery({
     queryKey: ["trending-questions"],
-    queryFn: () => dao.fetchQuestionsWithOptions(),
+    queryFn: () => dao.fetchTrendingQuestions(),
+    placeholderData: [],
   });
 
   onServerPrefetch(async () => {
