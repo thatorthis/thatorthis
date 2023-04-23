@@ -54,7 +54,6 @@ async function signInWith(provider: "google"): Promise<void> {
   background: $white;
   display: flex;
   align-items: center;
-  cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.08) 0 4px 16px 0;
   transition: box-shadow 0.3s, transform 0.3s;
 

@@ -1,9 +1,19 @@
 <template>
   <!-- Profile Icon -->
-  <div class="profile-icon">
+  <button class="profile-icon" @click="onClick">
     <img src="~/assets/images/meerkat-profile.png" alt="Profile Icon" />
-  </div>
+  </button>
 </template>
+
+<script setup lang="ts">
+const emit = defineEmits<{
+  (e: "click", $event: MouseEvent | TouchEvent): void;
+}>();
+
+function onClick($event: MouseEvent | TouchEvent) {
+  emit("click", $event);
+}
+</script>
 
 <style lang="scss" scoped>
 .profile-icon {
