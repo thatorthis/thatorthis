@@ -5,7 +5,8 @@
         <!-- Logo -->
       </div>
       <div class="default-layout__header__profile">
-        <profile-icon />
+        <ProfileIcon @click="onIconClick" ref="profileIconEl" />
+        <ProfileMenu ref="profileMenuEl" v-if="menuOpen" />
       </div>
     </header>
     <div class="default-layout__content">
@@ -14,7 +15,23 @@
   </div>
 </template>
 <script setup lang="ts">
+import { ref } from "vue";
+import { onClickOutside } from "@vueuse/core";
 import ProfileIcon from "~/components/ProfileIcon.vue";
+import ProfileMenu from "~~/components/ProfileMenu.vue";
+
+const profileIconEl = ref<HTMLButtonElement | null>(null);
+const profileMenuEl = ref<HTMLDivElement | null>(null);
+const menuOpen = ref(false);
+
+onClickOutside(profileMenuEl, (event) => {
+  menuOpen.value = false;
+  event.stopPropagation();
+});
+
+function onIconClick() {
+  menuOpen.value = !menuOpen.value;
+}
 </script>
 
 <style lang="scss" scoped>

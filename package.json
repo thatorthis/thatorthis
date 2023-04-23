@@ -15,6 +15,7 @@
     "sass-loader": "^13.2.2"
   },
   "dependencies": {
-    "@tanstack/vue-query": "^4.27.0"
+    "@tanstack/vue-query": "^4.27.0",
+    "@vueuse/core": "^10.1.0"
   }
 }

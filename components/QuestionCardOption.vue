@@ -20,7 +20,6 @@ const props = defineProps<{
   width: 100%;
   background-color: $grey-100;
   text-align: left;
-  cursor: pointer;
   color: $grey-800;
 
   &.selected {
