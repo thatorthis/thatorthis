@@ -1,13 +1,23 @@
 <template>
   <div class="profile-menu">
     <div class="profile-menu__item">
-      <button>😎 My Activities</button>
+      <button @click="onItemClicked('MY_ACTIVITIES')">😎 My Activities</button>
     </div>
     <div class="profile-menu__item">
-      <button>👋 Sign Out</button>
+      <button @click="onItemClicked('SIGN_OUT')">👋 Sign Out</button>
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+const emit = defineEmits<{
+  (e: "item-clicked", name: string): void;
+}>();
+
+function onItemClicked(name: string) {
+  emit("item-clicked", name);
+}
+</script>
 
 <style scoped lang="scss">
 .profile-menu {
@@ -20,7 +30,6 @@
   border-radius: 0.8rem;
 
   &__item {
-    padding: 1.6rem 1.6rem;
     border-bottom: 1px solid $grey-200;
     cursor: pointer;
 
@@ -30,6 +39,7 @@
 
     button {
       width: 100%;
+      padding: 1.6rem 1.6rem;
       text-align: left;
       color: #333;
     }

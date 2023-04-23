@@ -6,7 +6,11 @@
       </div>
       <div class="default-layout__header__profile">
         <ProfileIcon @click="onIconClick" ref="profileIconEl" />
-        <ProfileMenu ref="profileMenuEl" v-if="menuOpen" />
+        <ProfileMenu
+          ref="profileMenuEl"
+          v-if="menuOpen"
+          @item-clicked="onItemClicked"
+        />
       </div>
     </header>
     <div class="default-layout__content">
@@ -17,12 +21,15 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
+import { useService, symbols } from "~/composables/use-service";
 import ProfileIcon from "~/components/ProfileIcon.vue";
 import ProfileMenu from "~~/components/ProfileMenu.vue";
 
+const authService = useService(symbols.auth);
 const profileIconEl = ref<HTMLButtonElement | null>(null);
 const profileMenuEl = ref<HTMLDivElement | null>(null);
 const menuOpen = ref(false);
+const router = useRouter();
 
 onClickOutside(profileMenuEl, (event) => {
   menuOpen.value = false;
@@ -31,6 +38,15 @@ onClickOutside(profileMenuEl, (event) => {
 
 function onIconClick() {
   menuOpen.value = !menuOpen.value;
+}
+
+function onItemClicked(name: string) {
+  if (name === "SIGN_OUT") {
+    authService.signOut();
+  } else if (name === "MY_ACTIVITIES") {
+    router.push("/activities");
+  }
+  menuOpen.value = false;
 }
 </script>
 

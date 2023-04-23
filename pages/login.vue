@@ -16,6 +16,10 @@
 
 <script setup lang="ts">
 import { symbols, useService } from "~/composables/use-service";
+definePageMeta({
+  layout: "empty",
+});
+
 const service = useService(symbols.auth);
 
 async function signInWith(provider: "google"): Promise<void> {
