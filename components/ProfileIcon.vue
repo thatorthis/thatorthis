@@ -1,5 +1,4 @@
 <template>
-  <!-- Profile Icon -->
   <button class="profile-icon" @click="onClick">
     <img src="~/assets/images/meerkat-profile.png" alt="Profile Icon" />
   </button>
