@@ -1,9 +1,11 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 
 export interface Option {
+  userId: string;
   id: string;
   option: string;
 }
+
 export interface QuestionWithOptions {
   id: string;
   question: string;
@@ -16,6 +18,13 @@ interface OptionIdAndVoteCount {
 }
 export interface OptionIdToVoteCount {
   [optionId: string]: number;
+}
+
+export interface VoteBody {
+  userId: string;
+  questionId: string;
+  optionId: string;
+  reason?: string;
 }
 
 export class QuestionDAO {
@@ -63,5 +72,22 @@ export class QuestionDAO {
       },
       {}
     );
+  }
+
+  async vote({
+    userId,
+    questionId,
+    optionId,
+    reason = "",
+  }: VoteBody): Promise<void> {
+    const { error } = await this._client.from("votes").insert({
+      question_id: questionId,
+      option_id: optionId,
+      reason: reason,
+      user_id: userId,
+    });
+    if (error) {
+      throw error;
+    }
   }
 }

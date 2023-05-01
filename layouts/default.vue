@@ -33,6 +33,10 @@ const profileMenuEl = ref<HTMLDivElement | null>(null);
 const menuOpen = ref(false);
 const router = useRouter();
 
+onMounted(() => {
+  authService.refetchUser();
+});
+
 onClickOutside(profileMenuEl, (event) => {
   menuOpen.value = false;
   event.stopPropagation();
@@ -42,11 +46,12 @@ function onIconClick() {
   menuOpen.value = !menuOpen.value;
 }
 
-function onItemClicked(name: string) {
+async function onItemClicked(name: string) {
   if (name === "SIGN_OUT") {
-    authService.signOut();
+    await authService.signOut();
+    await router.push("/login");
   } else if (name === "MY_ACTIVITIES") {
-    router.push("/activities");
+    await router.push("/activities");
   }
   menuOpen.value = false;
 }
