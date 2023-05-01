@@ -15,6 +15,7 @@
     </header>
     <div class="default-layout__content">
       <slot />
+      <ModalsContainer />
     </div>
   </div>
 </template>
@@ -24,6 +25,7 @@ import { onClickOutside } from "@vueuse/core";
 import { useService, symbols } from "~/composables/use-service";
 import ProfileIcon from "~/components/ProfileIcon.vue";
 import ProfileMenu from "~~/components/ProfileMenu.vue";
+import { ModalsContainer } from "vue-final-modal";
 
 const authService = useService(symbols.auth);
 const profileIconEl = ref<HTMLButtonElement | null>(null);

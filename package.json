@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@tanstack/vue-query": "^4.27.0",
-    "@vueuse/core": "^10.1.0"
+    "@vueuse/core": "^10.1.0",
+    "vue-final-modal": "^4.4.2"
   }
 }

@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: ["@nuxtjs/supabase"],
-  css: ["@/assets/css/base.scss"],
+  css: ["@/assets/css/base.scss", "vue-final-modal/style.css"],
   vite: {
     css: {
       preprocessorOptions: {
