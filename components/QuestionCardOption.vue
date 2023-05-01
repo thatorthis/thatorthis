@@ -26,5 +26,9 @@ const props = defineProps<{
     background-color: $primary;
     color: $primary-contrast;
   }
+
+  &:hover {
+    background-color: $grey-200;
+  }
 }
 </style>
