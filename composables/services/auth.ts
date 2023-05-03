@@ -1,15 +1,41 @@
 import { SignInWithOAuthCredentials } from "@supabase/supabase-js";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/vue-query";
 
 export const useAuthService = () => {
   const client = useSupabaseAuthClient();
+  const queryClient = useQueryClient();
+  const {
+    data: user,
+    suspense,
+    refetch: refetchUser,
+  } = useQuery({
+    queryKey: ["me"],
+    queryFn: async () => {
+      const {
+        data: { user },
+      } = await client.auth.getUser();
+      return user;
+    },
+  });
 
-  async function signInWithOAuth(credentials: SignInWithOAuthCredentials) {
-    return await client.auth.signInWithOAuth(credentials);
-  }
+  onServerPrefetch(async () => {
+    await suspense();
+  });
 
-  async function signOut() {
-    return await client.auth.signOut();
-  }
+  const { mutateAsync: signInWithOAuth } = useMutation({
+    mutationFn: (credentials: SignInWithOAuthCredentials) =>
+      client.auth.signInWithOAuth(credentials),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["me"] });
+    },
+  });
 
-  return { signInWithOAuth, signOut };
+  const { mutateAsync: signOut } = useMutation({
+    mutationFn: () => client.auth.signOut(),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["me"] });
+    },
+  });
+
+  return { user, refetchUser, signInWithOAuth, signOut };
 };

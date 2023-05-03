@@ -1,5 +1,5 @@
-import { useQuery } from "@tanstack/vue-query";
-import { symbols, QuestionDAO } from "~/daos";
+import { useQuery, useMutation } from "@tanstack/vue-query";
+import { symbols, QuestionDAO, VoteBody } from "~/daos";
 
 export const useTrendingQuestions = () => {
   const client = useSupabaseClient();
@@ -15,4 +15,17 @@ export const useTrendingQuestions = () => {
   });
 
   return { data };
+};
+
+export const useVote = () => {
+  const client = useSupabaseClient();
+  const dao = inject(symbols.question, new QuestionDAO(client));
+  const { isLoading, mutateAsync: vote } = useMutation({
+    mutationFn: (data: VoteBody) => dao.vote(data),
+  });
+
+  return {
+    isLoading,
+    vote,
+  };
 };

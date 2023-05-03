@@ -27,7 +27,7 @@ const props = defineProps<{
     color: $primary-contrast;
   }
 
-  &:hover {
+  &:hover:not(.selected) {
     background-color: $grey-200;
   }
 }

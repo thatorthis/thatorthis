@@ -36,7 +36,6 @@ onMounted(() => {
 
 function submit() {
   emit("submit", textarea.value?.value ?? "");
-  textarea.value!.value = "";
 }
 </script>
 
