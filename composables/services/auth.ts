@@ -6,6 +6,7 @@ export const useAuthService = () => {
   const queryClient = useQueryClient();
   const {
     data: user,
+    isLoading,
     suspense,
     refetch: refetchUser,
   } = useQuery({
@@ -20,6 +21,12 @@ export const useAuthService = () => {
 
   onServerPrefetch(async () => {
     await suspense();
+  });
+
+  const signInStatus = computed(() => {
+    if (isLoading.value) return "IN_PROGRESS";
+    if (user.value) return "SIGNED_IN";
+    return "SIGNED_OUT";
   });
 
   const { mutateAsync: signInWithOAuth } = useMutation({
@@ -37,5 +44,5 @@ export const useAuthService = () => {
     },
   });
 
-  return { user, refetchUser, signInWithOAuth, signOut };
+  return { user, signInStatus, refetchUser, signInWithOAuth, signOut };
 };
