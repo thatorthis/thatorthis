@@ -5,7 +5,13 @@
         <!-- Logo -->
       </div>
       <div class="default-layout__header__profile">
-        <ProfileIcon @click="onIconClick" ref="profileIconEl" />
+        <button
+          v-if="authService.signInStatus.value === 'SIGNED_OUT'"
+          @click="() => router.push('/login')"
+        >
+          로그인
+        </button>
+        <ProfileIcon @click="onIconClick" ref="profileIconEl" v-else />
         <ProfileMenu
           ref="profileMenuEl"
           v-if="menuOpen"
