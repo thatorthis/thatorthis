@@ -51,7 +51,7 @@ async function onItemClicked(name: string) {
     await authService.signOut();
     await router.push("/login");
   } else if (name === "MY_ACTIVITIES") {
-    await router.push("/activities");
+    await router.push("/mypage");
   }
   menuOpen.value = false;
 }

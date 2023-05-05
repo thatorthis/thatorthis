@@ -1,10 +1,10 @@
 <template>
   <div class="profile-menu">
     <div class="profile-menu__item">
-      <button @click="onItemClicked('MY_ACTIVITIES')">😎 My Activities</button>
+      <button @click="onItemClicked('MY_ACTIVITIES')">😎 마이페이지</button>
     </div>
     <div class="profile-menu__item">
-      <button @click="onItemClicked('SIGN_OUT')">👋 Sign Out</button>
+      <button @click="onItemClicked('SIGN_OUT')">👋 로그아웃</button>
     </div>
   </div>
 </template>

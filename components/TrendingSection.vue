@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h2>🚀 Trending</h2>
+    <h2>🚀 인기 밸런스</h2>
     <QuestionCard
       :question="question"
       v-for="question in data"
