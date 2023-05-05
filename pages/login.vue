@@ -1,14 +1,14 @@
 <template>
   <div class="login-container">
     <div class="login-wrapper">
-      <h1>Build Closer Bonds with Friends with your Choices!</h1>
+      <h1>밸런스 게임으로 친구를 알아가세요!</h1>
       <button @click="signInWith('google')" class="google-btn">
         <img
           src="~/assets/images/google-icon.svg"
           alt="google logo"
           class="google-logo"
         />
-        <span class="google-btn-text">Sign in with Google</span>
+        <span class="google-btn-text">Google로 시작하기</span>
       </button>
     </div>
   </div>
