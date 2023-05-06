@@ -1,14 +1,15 @@
 <template>
   <div class="question-card">
-    <p>{{ props.question.question }}</p>
-    <QuestionCardOption
-      v-for="option in props.question.options"
-      :option="option"
-      :key="option.id"
-      :selected="selected === option.id"
-      @click="selectOption(option)"
-    >
-    </QuestionCardOption>
+    <h3>{{ props.question.question }}</h3>
+    <div class="option-card-container">
+      <OptionCard
+        v-for="option in props.question.options"
+        :option="option"
+        :key="option.id"
+        :selected="selected === option.id"
+        @click="selectOption(option)"
+      />
+    </div>
   </div>
 </template>
 
@@ -16,7 +17,7 @@
 import { QuestionWithOptions } from "~~/daos";
 import { useModal } from "vue-final-modal";
 import { useService } from "~~/composables/use-service";
-import QuestionCardOption from "./QuestionCardOption.vue";
+import OptionCard from "./OptionCard.vue";
 import ReasonModal from "./ReasonModal.vue";
 import { ref } from "vue";
 
@@ -64,5 +65,12 @@ function selectOption(option: { id: string }) {
   margin-bottom: 2.4rem;
   background-color: $white;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 16px 0px;
+}
+
+@media (min-width: 768px) {
+  .option-card-container {
+    display: flex;
+    flex-direction: row;
+  }
 }
 </style>
