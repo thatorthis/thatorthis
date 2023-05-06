@@ -1,5 +1,5 @@
 <template>
-  <TotShadowCard>
+  <TotShadowCard class="question-card">
     <h3>{{ props.question.question }}</h3>
     <div class="option-card-container">
       <OptionCard
@@ -9,6 +9,10 @@
         :selected="selected === option.id"
         @click="selectOption(option)"
       />
+      <div class="vs">
+        <span class="v">V</span>
+        <span class="s">S</span>
+      </div>
     </div>
   </TotShadowCard>
 </template>
@@ -60,10 +64,39 @@ function selectOption(option: { id: string }) {
 </script>
 
 <style scoped lang="scss">
+.question-card {
+  position: relative;
+
+  .vs {
+    display: none;
+  }
+}
+
 @media (min-width: 768px) {
   .option-card-container {
     display: flex;
     flex-direction: row;
+  }
+
+  .vs {
+    user-select: none;
+    position: absolute;
+    display: flex !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3.6rem;
+    font-weight: bolder;
+    color: $white;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: $primary-contrast;
+
+    .v {
+      margin-bottom: 1.6rem;
+    }
+    .s {
+      margin-top: 1.6rem;
+    }
   }
 }
 </style>
