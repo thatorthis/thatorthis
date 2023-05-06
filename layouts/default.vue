@@ -58,6 +58,8 @@ async function onItemClicked(name: string) {
     await router.push("/login");
   } else if (name === "MY_ACTIVITIES") {
     await router.push("/mypage");
+  } else if (name === "CREATE_BALANCE") {
+    await router.push("/create");
   }
   menuOpen.value = false;
 }

@@ -1,6 +1,9 @@
 <template>
   <div class="profile-menu">
     <div class="profile-menu__item">
+      <button @click="onItemClicked('CREATE_BALANCE')">✍️ 밸런스 만들기</button>
+    </div>
+    <div class="profile-menu__item">
       <button @click="onItemClicked('MY_ACTIVITIES')">😎 마이페이지</button>
     </div>
     <div class="profile-menu__item">
