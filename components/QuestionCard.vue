@@ -1,5 +1,5 @@
 <template>
-  <div class="question-card">
+  <TotShadowCard>
     <h3>{{ props.question.question }}</h3>
     <div class="option-card-container">
       <OptionCard
@@ -10,7 +10,7 @@
         @click="selectOption(option)"
       />
     </div>
-  </div>
+  </TotShadowCard>
 </template>
 
 <script setup lang="ts">
@@ -20,6 +20,7 @@ import { useService } from "~~/composables/use-service";
 import OptionCard from "./OptionCard.vue";
 import ReasonModal from "./ReasonModal.vue";
 import { ref } from "vue";
+import TotShadowCard from "./shares/TotShadowCard.vue";
 
 const props = defineProps<{
   question: QuestionWithOptions;
@@ -59,14 +60,6 @@ function selectOption(option: { id: string }) {
 </script>
 
 <style scoped lang="scss">
-.question-card {
-  border-radius: 1.6rem;
-  padding: 1.6rem;
-  margin-bottom: 2.4rem;
-  background-color: $white;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 16px 0px;
-}
-
 @media (min-width: 768px) {
   .option-card-container {
     display: flex;
