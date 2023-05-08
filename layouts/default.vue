@@ -13,6 +13,7 @@
         </button>
         <ProfileIcon @click="onIconClick" ref="profileIconEl" v-else />
         <ProfileMenu
+          class="profile-menu"
           ref="profileMenuEl"
           v-if="menuOpen"
           @item-clicked="onItemClicked"
@@ -83,6 +84,10 @@ async function onItemClicked(name: string) {
   &__content {
     max-width: 76.8rem;
     width: 100%;
+  }
+
+  &__header__profile {
+    z-index: 900;
   }
 }
 </style>

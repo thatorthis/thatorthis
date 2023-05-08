@@ -9,7 +9,7 @@
         v-if="image"
       />
       <button class="image-placeholder" v-else>
-        <span>클릭하여 이미지를 추가해주세요.</span>
+        <span>클릭하여 이미지를 추가해주세요</span>
         <input type="file" accept="image/*" class="image-input" />
       </button>
     </div>
