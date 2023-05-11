@@ -1,6 +1,11 @@
 import { provide, inject } from "vue";
 import { InjectionKey } from "vue";
-import { useAuthService, useTrendingQuestions, useVote } from "./services";
+import {
+  useAuthService,
+  useTrendingQuestions,
+  useVote,
+  useSearchImages,
+} from "./services";
 
 type ArgsType<T> = T extends (...args: infer A) => any ? A : never;
 type ReturnTypeOf<T> = T extends (...args: any[]) => infer R ? R : never;
@@ -12,12 +17,16 @@ export const symbols = Object.freeze({
     ReturnTypeOf<typeof useTrendingQuestions>
   >,
   vote: Symbol("vote") as InjectionKey<ReturnTypeOf<typeof useVote>>,
+  searchImages: Symbol("searchImages") as InjectionKey<
+    ReturnTypeOf<typeof useSearchImages>
+  >,
 });
 
 const serviceFuncMap: Record<symbol, (...args: any[]) => any> = {
   [symbols.auth as symbol]: useAuthService,
   [symbols.trendingQuestions as symbol]: useTrendingQuestions,
   [symbols.vote as symbol]: useVote,
+  [symbols.searchImages as symbol]: useSearchImages,
 };
 
 export function useService<U>(
