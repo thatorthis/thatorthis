@@ -1,14 +1,14 @@
 <template>
   <div class="option">
-    <h3>선택지 {{ number }}</h3>
-    <TotInput :placeholder="`${koreanOrder} 선택지를 입력하세요`" />
+    <h3>선택지 {{ props.number }}</h3>
+    <TotInput
+      :placeholder="`${koreanOrder} 선택지를 입력하세요`"
+      :value="modelValue.title"
+      @update:model-value="onInput"
+    />
     <div class="preview-image">
-      <img
-        src="https://picsum.photos/seed/picsum/200/300"
-        alt="preview"
-        v-if="image"
-      />
-      <button class="image-placeholder" v-else>
+      <img :src="image.url" :alt="image.alt" v-if="image" />
+      <button class="image-placeholder" v-else @click="openImageSelectModal">
         <span>클릭하여 이미지를 추가해주세요</span>
         <input type="file" accept="image/*" class="image-input" />
       </button>
@@ -18,12 +18,38 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
+import { useModal } from "vue-final-modal";
+
 import TotInput from "./shares/TotInput.vue";
+import ImageSelectModal from "~~/components/ImageSelectModal.vue";
+import { Image } from "~~/daos";
+
+interface ModelValue {
+  title: string;
+  image: Image | null;
+}
 
 const props = defineProps<{
   number: 1 | 2;
-  image?: string | null;
+  modelValue: ModelValue;
 }>();
+
+const emit = defineEmits<{
+  (e: "update:modelValue", value: ModelValue): void;
+}>();
+
+const modal = useModal({
+  component: ImageSelectModal,
+  attrs: {
+    onSelect: (image: Image) => {
+      emit("update:modelValue", {
+        ...props.modelValue,
+        image,
+      });
+      modal.close();
+    },
+  },
+});
 
 const koreanOrder = computed(() => {
   if (props.number === 1) {
@@ -32,13 +58,25 @@ const koreanOrder = computed(() => {
     return "두번째";
   }
 });
+
+const image = computed(() => props.modelValue.image);
+
+function openImageSelectModal() {
+  modal.open();
+}
+
+function onInput(title: string) {
+  emit("update:modelValue", {
+    ...props.modelValue,
+    title,
+  });
+}
 </script>
 
 <style lang="scss" scoped>
 .preview-image {
   width: 100%;
-  margin-top: 1.6rem;
-  padding: 1.6rem 0;
+  margin: 1.6rem 0;
   aspect-ratio: 16/9;
 
   img {
