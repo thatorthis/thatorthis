@@ -27,7 +27,7 @@ export interface VoteBody {
   reason?: string;
 }
 
-export class QuestionDAO {
+export class QuestionClient {
   private _client: SupabaseClient;
 
   constructor(client: SupabaseClient) {

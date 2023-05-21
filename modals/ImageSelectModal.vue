@@ -27,9 +27,9 @@
 import TotInput from "./shares/TotInput.vue";
 import TotModal from "./shares/TotModal.vue";
 import { modalSymbols } from "~~/constants";
-import { useService } from "~~/composables/use-service";
+import { useSearchImages } from "~~/composables/services";
 import { useDebounceFn } from "@vueuse/core";
-import { Image } from "~~/daos";
+import { Image } from "~~/apis";
 
 const emit = defineEmits<{
   (e: "select", image: Image): void;
@@ -38,7 +38,7 @@ const emit = defineEmits<{
 const keyword = ref("");
 const input = ref<typeof TotInput | null>(null);
 // @ts-ignore
-const { images } = useService(symbols.searchImages, keyword);
+const { images } = useSearchImages(keyword);
 const onInput = useDebounceFn((v) => {
   keyword.value = v;
 }, 500);

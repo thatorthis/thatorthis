@@ -18,20 +18,20 @@
 </template>
 
 <script setup lang="ts">
-import { QuestionWithOptions } from "~~/daos";
-import { useModal } from "vue-final-modal";
-import { useService } from "~~/composables/use-service";
-import OptionCard from "./OptionCard.vue";
-import ReasonModal from "./ReasonModal.vue";
 import { ref } from "vue";
+import { QuestionWithOptions } from "~~/apis";
+import { useModal } from "vue-final-modal";
+import OptionCard from "./OptionCard.vue";
+import ReasonModal from "~/modals/ReasonModal.vue";
 import TotShadowCard from "./shares/TotShadowCard.vue";
+import { symbols } from "~/composables/services";
 
 const props = defineProps<{
   question: QuestionWithOptions;
 }>();
 
-const authService = useService(symbols.auth);
-const voteService = useService(symbols.vote);
+const voteSvc = inject(symbols.voteSvc)!;
+const authSvc = inject(symbols.authSvc)!;
 
 const modal = useModal({
   component: ReasonModal,
@@ -41,8 +41,8 @@ const modal = useModal({
       modal.close();
     },
     onSubmit: async (reason: string) => {
-      await voteService.vote({
-        userId: authService.user.value!.id,
+      await voteSvc.vote({
+        userId: authSvc.user.value!.id,
         questionId: props.question.id,
         optionId: selected.value!,
         reason,
@@ -55,7 +55,7 @@ const modal = useModal({
 const selected = ref<string | null>(null);
 
 function selectOption(option: { id: string }) {
-  if (!authService.user.value) {
+  if (!authSvc.user.value) {
     navigateTo("/login");
   }
   selected.value = option.id;
