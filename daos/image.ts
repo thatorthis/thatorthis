@@ -18,15 +18,15 @@ export class UnsplashDAO {
     query: string,
     { page = 1, per_page = 20 } = {}
   ): Promise<Image[]> {
-    const { data } = await axios.get(
-      `${this._baseURL}/search?query=${query}&client_id=${this._clientId}`,
-      {
-        params: {
-          page,
-          per_page,
-        },
-      }
-    );
+    const { data } = await axios.get(`${this._baseURL}/search`, {
+      params: {
+        client_id: this._clientId,
+        query,
+        lang: "ko",
+        page,
+        per_page,
+      },
+    });
     return data.photos.results.map((item: any) => ({
       alt: item.alt_description,
       url: item.urls.regular,
