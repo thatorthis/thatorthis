@@ -10,8 +10,8 @@
 </template>
 
 <script setup lang="ts">
-import { useService, symbols } from "~/composables/use-service";
 import QuestionCard from "~~/components/QuestionCard.vue";
+import { symbols } from "~~/composables/services/symbols";
 
-const { data } = useService(symbols.trendingQuestions);
+const { data } = inject(symbols.trendingQuestionsSvc)!;
 </script>

@@ -1,12 +1,12 @@
 import { useQuery, useMutation } from "@tanstack/vue-query";
-import { symbols, QuestionDAO, VoteBody } from "~/daos";
+import { QuestionClient, VoteBody } from "~~/apis";
 
 export const useTrendingQuestions = () => {
-  const client = useSupabaseClient();
-  const dao = inject(symbols.question, new QuestionDAO(client));
+  const supabase = useSupabaseClient();
+  const client = new QuestionClient(supabase);
   const { data, suspense } = useQuery({
     queryKey: ["trending-questions"],
-    queryFn: () => dao.fetchTrendingQuestions(),
+    queryFn: () => client.fetchTrendingQuestions(),
     placeholderData: [],
   });
 
@@ -18,10 +18,10 @@ export const useTrendingQuestions = () => {
 };
 
 export const useVote = () => {
-  const client = useSupabaseClient();
-  const dao = inject(symbols.question, new QuestionDAO(client));
+  const supabase = useSupabaseClient();
+  const client = new QuestionClient(supabase);
   const { isLoading, mutateAsync: vote } = useMutation({
-    mutationFn: (data: VoteBody) => dao.vote(data),
+    mutationFn: (data: VoteBody) => client.vote(data),
   });
 
   return {

@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { Option } from "~~/daos";
+import { Option } from "~/apis/question";
 const props = defineProps<{
   option: Option;
   selected: boolean;

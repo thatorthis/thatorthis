@@ -21,8 +21,8 @@ import { computed } from "vue";
 import { useModal } from "vue-final-modal";
 
 import TotInput from "./shares/TotInput.vue";
-import ImageSelectModal from "~~/components/ImageSelectModal.vue";
-import { Image } from "~~/daos";
+import ImageSelectModal from "~/modals/ImageSelectModal.vue";
+import { Image } from "~~/apis";
 
 interface ModelValue {
   title: string;

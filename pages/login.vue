@@ -15,15 +15,16 @@
 </template>
 
 <script setup lang="ts">
-import { symbols, useService } from "~/composables/use-service";
+import { useAuth } from "~/composables/services/auth";
+
 definePageMeta({
   layout: "empty",
 });
 
-const service = useService(symbols.auth);
+const authSvc = useAuth();
 
 async function signInWith(provider: "google"): Promise<void> {
-  await service.signInWithOAuth({ provider });
+  await authSvc.signInWithOAuth({ provider });
 }
 </script>
 

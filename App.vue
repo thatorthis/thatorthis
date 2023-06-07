@@ -4,7 +4,4 @@
   </NuxtLayout>
 </template>
 
-<script setup>
-import { provideDaos } from "./utils";
-provideDaos();
-</script>
+<script setup></script>

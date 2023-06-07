@@ -1,7 +1,7 @@
 import { SignInWithOAuthCredentials } from "@supabase/supabase-js";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/vue-query";
 
-export const useAuthService = () => {
+export const useAuth = () => {
   const client = useSupabaseAuthClient();
   const queryClient = useQueryClient();
   const {

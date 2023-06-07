@@ -5,7 +5,7 @@ export interface Image {
   url: string;
 }
 
-export class UnsplashDAO {
+export class UnsplashClient {
   private _baseURL: string;
   private _clientId: string;
 
